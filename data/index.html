@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV System Monitor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <section id="home-section" class="active-section fade-in">
+            <div class="content-wrapper">
+                <h1 class="main-title">EV COOLING AND<br>MONITORING<br>SYSTEM</h1>
+                <div class="button-group">
+                    <button class="neon-button" onclick="navigateTo('stats-section')">STATS</button>
+                    <button class="neon-button" onclick="navigateTo('about-section')">ABOUT</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats-section" class="hidden-section fade-in">
+            <div class="content-wrapper statistics-layout">
+                <div class="header-nav">
+                    <button class="back-btn" onclick="navigateTo('home-section')">← Back</button>
+                    <h2>SYSTEM STATUS</h2>
+                </div>
+
+                <div class="system-time-bar">
+                    <span id="clock-display">Local Time: --:--:--</span>
+                    <span id="uptime-display">Uptime: --</span>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="stat-card">
+                        <div class="card-header">
+                            <span>SOC%</span>
+                            <div class="info-icon" data-tooltip="State of Charge: Remaining battery capacity percentage.">i</div>
+                        </div>
+                        <div class="card-value">
+                            <span id="soc-val">--</span>%
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="card-header">
+                            <span>Voltage</span>
+                            <div class="info-icon" data-tooltip="Current battery pack voltage reading.">i</div>
+                        </div>
+                        <div class="card-value">
+                            <span id="voltage-val">--</span>V
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="card-header">
+                            <span>Temp</span>
+                            <div class="info-icon" data-tooltip="Current battery temperature measured by DS18B20 sensor.">i</div>
+                        </div>
+                        <div class="card-value">
+                            <span id="temp-val">--</span> C
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="card-header">
+                            <span>SOH%</span>
+                            <div class="info-icon" data-tooltip="State of Health: Estimated battery health based on voltage vs full capacity.">i</div>
+                        </div>
+                        <div class="card-value">
+                            <span id="soh-val">--</span>%
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                         <div class="card-header">
+                            <span>Status</span>
+                            <div class="info-icon" data-tooltip="Overall system status indicating alerts like Over Temp or Low Battery.">i</div>
+                        </div>
+                        <div class="card-value card-status-text">
+                            <span id="status-val">NORMAL</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                         <div class="card-header">
+                            <span>Charging</span>
+                            <div class="info-icon" data-tooltip="Indicates if the battery is charging (voltage high) or discharging.">i</div>
+                        </div>
+                        <div class="card-value card-status-text">
+                            <span id="charging-val">DISCHG</span>
+                        </div>
+                    </div>
+                </div> 
+                <div class="monitoring-buttons button-group">
+                     <button class="neon-button" onclick="navigateTo('graphs-section')">GRAPHS</button>
+                     <button class="neon-button" onclick="navigateTo('logs-section')">LOGS</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="graphs-section" class="hidden-section fade-in">
+             <div class="content-wrapper">
+                <div class="header-nav">
+                    <button class="back-btn" onclick="navigateTo('stats-section')">← Back to Stats</button>
+                    <h2>REAL-TIME MONITORING</h2>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <canvas id="tempVoltageChart"></canvas>
+                    </div>
+                     <div class="chart-wrapper">
+                        <canvas id="socChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logs-section" class="hidden-section fade-in">
+             <div class="content-wrapper">
+                <div class="header-nav">
+                    <button class="back-btn" onclick="navigateTo('stats-section')">← Back to Stats</button>
+                    <h2>SYSTEM LOGS</h2>
+                </div>
+                <div class="glass-panel logs-panel">
+                    <ul id="logs-list" class="logs-list">
+                        <li class="no-logs">No system logs available.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-section" class="hidden-section fade-in">
+            <div class="content-wrapper">
+                 <div class="header-nav">
+                    <button class="back-btn" onclick="navigateTo('home-section')">← Back</button>
+                    <h2>ABOUT</h2>
+                </div>
+                <div class="glass-panel">
+                    <p>EV Cooling and Monitoring System v1.0</p>
+                    <p>Powered by ESP32.</p>
+                    <p>Sensors utilized: MAX17048 (Fuel Gauge) and DS18B20 (Temperature).</p>
+                    <p>Design emphasizes real-time battery health tracking and thermal management alerts.</p>
+                </div>
+            </div>
+        </section>
+
+    </div> <script src="script.js"></script>
+</body>
+</html>
