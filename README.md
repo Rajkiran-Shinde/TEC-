@@ -279,4 +279,5 @@ Electronics & Telecommunication Engineering — Embedded Systems / IoT
 
 ## License
 
-This project is intended to be released under the MIT License. *(No `LICENSE` file is currently present in the repository — add one to formalize this.)*
+This project is intended to be released under the MIT License.
+See the [LICENSE](LICENSE) file for more information.
